@@ -8,6 +8,11 @@ import { PlayIcon, PauseIcon, RestartIcon, UploadIcon, CarIcon, PersonIcon, Anim
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import * as tf from '@tensorflow/tfjs';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
+import './App.css';
+import { Button, Upload, message, Card, Typography, Space } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+import Metrics from './components/Metrics';
+import type { UploadFile } from 'antd/es/upload/interface';
 
 // Chart colors aligned with the new Tailwind theme
 const CHART_COLORS_IMG_THEME = {
@@ -474,32 +479,31 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen font-sans antialiased selection:bg-accent-blue selection:text-white"> {/* Changed font */}
-      <Sidebar
-        confidence={confidence} setConfidence={setConfidence}
-        iou={iou} setIou={setIou}
-        frameSkip={frameSkip} setFrameSkip={setFrameSkip}
-        onStartProcessing={handleStartProcessing}
-        onDownloadLog={handleDownloadLog}
-        isProcessing={isProcessing}
-        hasProcessed={hasProcessed}
-        setVideoFile={setVideoFile}
-        fileName={fileName}
-        isModelLoading={modelLoading}
-        onShowExplanation={() => setShowExplanationModal(true)}
-      />
-      <main className="flex-1 p-6 lg:p-8 ml-80 overflow-y-auto bg-background-primary scrollbar-thin scrollbar-thumb-border-ui-default scrollbar-track-background-primary">
-        <header className="mb-6 flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold text-content-display">DASHBOARD</h1>
-            {/* Subtitle can be added if needed */}
-          </div>
-          {/* Placeholder for potential top-right nav like in image */}
-          <nav className="text-sm text-content-secondary space-x-4">
-            {/* <span>Dashboard</span> <span>Settings</span> <span>Profile</span> */}
-          </nav>
-        </header>
+    <div className="app">
+      <header className="app-header">
+        <h1>Real-Time Traffic Monitoring</h1>
+      </header>
+      
+      <main className="app-main">
+        <Metrics />
         
+        <Card title="Video Upload" style={{ marginBottom: '20px' }}>
+          <Space direction="vertical" style={{ width: '100%' }}>
+            <Upload
+              accept="video/*"
+              beforeUpload={handleFileUpload}
+              showUploadList={false}
+            >
+              <Button icon={<UploadOutlined />}>Upload Video</Button>
+            </Upload>
+            {videoFile && (
+              <Typography.Text>
+                Selected file: {videoFile.name}
+              </Typography.Text>
+            )}
+          </Space>
+        </Card>
+
         {modelLoading && <div className="mb-4 flex items-center text-accent-orange text-sm p-2.5 bg-background-card border border-accent-orange/50 rounded-md shadow-elevation-low"><SpinnerIcon className="w-4 h-4 mr-2"/>AI CORE INITIALIZING...</div>}
         {!model && !modelLoading && <div className="mb-4 text-accent-red text-sm p-2.5 bg-background-card border border-accent-red/50 rounded-md shadow-elevation-low">CRITICAL ERROR: AI CORE OFFLINE.</div>}
 
@@ -510,7 +514,6 @@ const App: React.FC = () => {
           <TelemetryCard title="Fauna Count" value={currentFrameStats.animalCount} icon={<CubeTransparentIcon className="w-6 h-6 text-white"/>} bgColorClass="bg-accent-orange" /> {/* Example mapping */}
           <TelemetryCard title="Anomaly Status" value={currentFrameStats.incident ? "ALERT" : "NOMINAL"} icon={<ExclamationTriangleIcon className="w-6 h-6 text-white"/>} bgColorClass={currentFrameStats.incident ? "bg-accent-red" : "bg-accent-green"} />
         </section>
-
 
         <section className="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-8">
           <div className="lg:col-span-3 bg-black/50 p-1 rounded-lg shadow-elevation-high border border-border-ui-default flex flex-col items-center justify-center relative min-h-[300px] aspect-video">
