@@ -1,0 +1,5 @@
+{
+  "name": "Real-Time Traffic Monitoring Dashboard",
+  "description": "A React-based dashboard to simulate real-time traffic monitoring, including vehicle detection, congestion analysis, and incident reporting. Users can upload a mock video file, adjust parameters, and view live statistics and final reports.",
+  "requestFramePermissions": []
+}

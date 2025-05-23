@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traffic Monitoring Dashboard - Image Theme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class', 
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', '"Noto Sans"', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"', '"Noto Color Emoji"'],
+              mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
+            },
+            colors: {
+              // Dashboard Image Inspired Palette
+              'background-primary': '#0A0F1E', // Very dark blue/charcoal
+              'background-card': '#161A27',   // Darker card background
+              'background-panel': '#1E293B', // Slate-800 like, for panels within cards or hover
+
+              'content-display': '#E2E8F0',    // Slate-200 (for large numbers, main titles)
+              'content-primary': '#CBD5E1',    // Slate-300 (primary text)
+              'content-secondary': '#94A3B8',  // Slate-400 (labels, secondary info)
+              'content-muted': '#64748B',      // Slate-500 (muted/disabled states)
+
+              // Accents for icon backgrounds in summary cards & primary actions
+              'accent-blue': '#2563EB',      // Blue-600
+              'accent-green': '#10B981',     // Emerald-500
+              'accent-orange': '#F59E0B',    // Amber-500 (for yellow/orange in image)
+              'accent-red': '#EF4444',       // Red-500
+              'accent-teal': '#14B8A6',      // Teal-500 (for highlights or secondary actions)
+              'accent-link': '#60A5FA',      // Blue-400 for links
+
+              'border-ui-default': '#334155', // Slate-700 (subtle borders)
+              'border-ui-strong': '#475569',  // Slate-600
+              
+              // Chart Colors from Image
+              'chart-line-blue': '#3B82F6',    // Blue-500 (main line color)
+              'chart-line-teal': '#14B8A6',    // Teal-500 (potential gradient/highlight on line chart)
+              
+              'chart-pie-blue1': '#3B82F6',   // Blue-500
+              'chart-pie-teal': '#14B8A6',    // Teal-500
+              'chart-pie-orange': '#F97316',  // Orange-500
+              'chart-pie-red': '#EF4444',     // Red-500
+              'chart-pie-blue2': '#2563EB',   // Blue-600 (darker blue segment)
+              'chart-bar-yellow': '#FACC15',  // Yellow-400 (for bar chart)
+
+              // Legacy names mapped to new theme (can be phased out or kept for specific uses)
+              'brand-primary': '#2563EB',      // -> accent-blue
+              'brand-secondary': '#14B8A6',    // -> accent-teal
+              'brand-accent': '#2563EB',       // -> accent-blue (main interactive accent)
+              'brand-danger': '#EF4444',       // -> accent-red
+              'brand-warning': '#F59E0B',      // -> accent-orange
+              
+              'ui-background': '#0A0F1E',        // -> background-primary
+              'ui-background-alt': '#111827',  // A slightly different dark if needed
+              'ui-card': '#161A27',             // -> background-card
+              'ui-card-hover': '#1E293B',       // -> background-panel
+              'ui-border': '#334155',           // -> border-ui-default
+              'ui-border-accent': '#2563EB',    // -> accent-blue
+
+              'text-primary': '#CBD5E1',        // -> content-primary
+              'text-secondary': '#94A3B8',     // -> content-secondary
+              'text-muted': '#64748B',          // -> content-muted
+              'text-accent': '#60A5FA',         // -> accent-link or a primary accent
+              'text-inverted': '#0A0F1E',       // Text for light backgrounds
+            },
+            boxShadow: {
+              // Subtle glows matching new accents
+              'glow-blue': '0 0 15px 5px rgba(37, 99, 235, 0.3)',
+              'glow-red': '0 0 15px 5px rgba(239, 68, 68, 0.3)',
+              'glow-green': '0 0 15px 5px rgba(16, 185, 129, 0.3)',
+              'elevation-low': '0 1px 2px 0 rgba(0,0,0,0.05)', // More subtle for dark theme
+              'elevation-medium': '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)',
+              'elevation-high': '0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)',
+            },
+            keyframes: {
+              fadeInScaleUp: {
+                '0%': { opacity: '0', transform: 'scale(0.95) translateY(10px)' },
+                '100%': { opacity: '1', transform: 'scale(1) translateY(0)' },
+              },
+            },
+            animation: {
+              fadeInScaleUp: 'fadeInScaleUp 0.3s ease-out forwards',
+            },
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "recharts": "https://esm.sh/recharts@^2.15.3",
+    "@tensorflow/tfjs": "https://esm.sh/@tensorflow/tfjs@^4.20.0",
+    "@tensorflow-models/coco-ssd": "https://esm.sh/@tensorflow-models/coco-ssd@^2.2.3"
+  }
+}
+</script>
+</head>
+  <body class="bg-background-primary text-text-primary font-sans"> {/* Changed to font-sans */}
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html><link rel="stylesheet" href="index.css">
+<script src="index.tsx" type="module"></script>
