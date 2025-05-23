@@ -12,6 +12,12 @@ A real-time traffic monitoring system that uses computer vision to detect and tr
 - Video playback controls
 - Data export capabilities
 
+## Deployment Status
+
+The application is deployed and accessible at:
+- Frontend: https://tharungowdapr.github.io/ai-project-3rd-sem/
+- Backend: https://traffic-monitoring-backend.onrender.com
+
 ## Deployment
 
 ### GitHub Pages Deployment
